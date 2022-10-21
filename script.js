@@ -29,9 +29,10 @@ async function checkWBi(wbid){
         .then((data) => {
             //console.log(data);
             let q = data.entities[Object.getOwnPropertyNames(data.entities)[0]];
-            console.log(q);
+            //console.log(q);
             let li = document.createElement("li");
-            li.innerHTML = q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': ' + q.aliases.nl.map(getNL).join(', ') : '');
+            li.innerHTML = q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': ' + (q.aliases.nl.map(getNL)).join(', ') : '');
+            console.log(li);
             return li
         });
 }
