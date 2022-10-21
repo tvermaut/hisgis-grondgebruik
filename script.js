@@ -27,6 +27,7 @@ async function checkWBi(wbid){
     await fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=' + wbid + '&format=json')
         .then((response) => response.json())
         .then((data) => {
+            console.log(data);
             let q = data.entities[Object.getOwnPropertyNames(data.entities)[0]];
             let li = document.createElement("li");
             li.innerHTML = q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': ' + q.aliases.nl.map(getNL).join(', ') : '');
