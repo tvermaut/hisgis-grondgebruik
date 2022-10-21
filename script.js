@@ -21,7 +21,7 @@ $(function() {
             ul1.appendChild(ul2);
             }
         }
-    $("#lijst").appendChild(ul1);
+    $("#lijst").html(ul1);
     // P33
 }
 
