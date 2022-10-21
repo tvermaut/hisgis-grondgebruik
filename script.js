@@ -10,7 +10,7 @@ $(function() {
     // P33 = ongebouwd
     var ul1 = document.createElement("ul");
     ul1.attr("id",itemnr);
-    document.appendChild(ul1);
+    $('#lijst').appendChild(ul1);
     var ul1_id = itemnr;
     itemnr++;
     for(let i of j.claims.P33){
