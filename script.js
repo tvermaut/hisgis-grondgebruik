@@ -13,10 +13,8 @@ $(function() {
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.hasOwnProperty("P36")){
             var ul2 = document.createElement("ul");
             for(let q of i.qualifiers.P36){ // P36 = tariefsoort
-                var ul2li = document.createElement("li");
-                let ul2lii = await checkWBi(q.datavalue.value.id);
-                if(ul2lii){ul2li.appendChild(ul2lii);}
-                ul2.appendChild(ul2li);
+                let ul2li = await checkWBi(q.datavalue.value.id);
+                if(ul2li){ul2.appendChild(ul2li);}
                 }
             ul1.appendChild(ul2);
             }
