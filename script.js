@@ -30,7 +30,7 @@ async function checkWBi(wbid){
         .then((data) => {
             let q = data.entities[Object.getOwnPropertyNames(data.entities)[0]];
             let li = document.createElement("li");
-            li.innerHTML = q.labels.nl.value + ': ' + q.aliases.nl.map(getNL).join(', ');
+            li.innerHTML = q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': ' + q.aliases.nl.map(getNL).join(', ') : '');
             return li
         });
 }
