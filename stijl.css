@@ -1,4 +1,5 @@
 .alias{
+    display: inline-block;
     border: 1px solid #999999;
     border-radius:0.4rem;
     background-color:#dddddd;
