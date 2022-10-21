@@ -10,3 +10,8 @@
 .aliasstijl{
     column-count: 3;
 }
+
+#lijst{
+    margin-left:5px;
+    margin-right:5px;
+}
