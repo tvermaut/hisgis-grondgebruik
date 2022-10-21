@@ -14,7 +14,8 @@ $(function() {
             var ul2 = document.createElement("ul");
             for(let q of i.qualifiers.P36){ // P36 = tariefsoort
                 var ul2li = document.createElement("li");
-                ul2li.appendChild(await checkWBi(q.datavalue.value.id));
+                let ul2lii = await checkWBi(q.datavalue.value.id);
+                if(ul2lii){ul2li.appendChild(ul2lii);}
                 ul2.appendChild(ul2li);
                 }
             ul1.appendChild(ul2);
