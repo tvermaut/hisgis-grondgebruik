@@ -9,7 +9,7 @@ $(function() {
   async function verwerkWB(j){
     // P33 = ongebouwd
     var ul1 = document.createElement("ul");
-    ul1.setAttribute("id",itemnr);
+    ul1.setAttribute("id",'ul'+itemnr);
     $('#lijst').append(ul1);
     var ul1_id = itemnr;
     itemnr++;
@@ -18,10 +18,10 @@ $(function() {
         if(lii){$('#'+ul1_id).append(lii);}
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.hasOwnProperty("P36")){
             var ul2 = document.createElement("ul");
-            ul2.setAttribute("id",itemnr);
+            ul2.setAttribute("id",'ul' + itemnr);
             var ul2_id = itemnr;
             itemnr++;
-            $('#'+ul1_id).append(ul2);
+            $('#ul'+ul1_id).append(ul2);
             for(let q of i.qualifiers.P36){ // P36 = tariefsoort
                 let ul2li = await checkWBi(q.datavalue.value.id);
                 if(ul2li){$('#'+ul2_id).append(ul2li);}
@@ -41,7 +41,7 @@ async function checkWBi(wbid){
             let q = data.entities[Object.getOwnPropertyNames(data.entities)[0]];
             //console.log(q);
             let li = document.createElement("li");
-            li.setAttribute("id",itemnr);
+            li.setAttribute("id",'li'+itemnr);
             itemnr++;
             li.innerHTML = q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': ' + (q.aliases.nl.map(getNL)).join(', ') : '');
             //console.log(li);
