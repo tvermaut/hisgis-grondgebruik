@@ -9,6 +9,7 @@ $(function() {
   async function verwerkWB(j){
     // P33 = ongebouwd
     var ul1 = document.createElement("ul");
+    ul1.setAttribute("class","list-group")
     ul1.setAttribute("id",'ul'+itemnr);
     $('#lijst').append(ul1);
     var ul1_id = itemnr;
@@ -18,6 +19,7 @@ $(function() {
         if(lii){$('#ul'+ul1_id).append(lii);}
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.hasOwnProperty("P36")){
             var ul2 = document.createElement("ul");
+            ul2.setAttribute("class","list-group")
             ul2.setAttribute("id",'ul' + itemnr);
             var ul2_id = itemnr;
             itemnr++;
@@ -40,8 +42,9 @@ async function checkWBi(wbid, ouder){
             //console.log(q);
             let li = document.createElement("li");
             li.setAttribute("id",'li'+itemnr);
+            li.setAttribute("class", "list-group-item d-flex justify-content-between align-items-center");
             itemnr++;
-            li.innerHTML = q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': ' + (q.aliases.nl.map(getNL)).join(', ') : '');
+            li.innerHTML = q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': <span class="badge badge-primary badge-pill">' + q.aliases.nl.length + '</span><br/>' + (q.aliases.nl.map(getNL)).join(', ') : '');
             //console.log(li);
             if(li.innerHTML){$(ouder).append(li);}
         });
