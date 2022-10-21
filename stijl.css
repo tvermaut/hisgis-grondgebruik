@@ -6,3 +6,7 @@
     -webkit-user-select: all; /* Covers Blink-land & Firefox (yup) */
     user-select: all; /* Someday */
 }
+
+.aliaslijst{
+    column-count: 3;
+}
