@@ -52,7 +52,7 @@ async function checkWBi(wbid, ouder, ms){
 }
 
 function getNL(item){
-    return item.value;
+    return '<span class="alias">' + item.value + '</span>';
 }
     
 // P29 = OSM-tag
