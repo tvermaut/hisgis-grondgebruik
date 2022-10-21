@@ -48,7 +48,7 @@ async function checkWBi(wbid, ouder, ms){
             li.innerHTML = '<h5 class="" data-toggle="collapse" data-target="#icollapse' + itemnr + '" aria-expanded="false" aria-controls="icollapse' + itemnr + '">' + q.labels.nl.value 
                 + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? 
                     ' <span class="badge text-bg-primary badge-pill">' + q.aliases.nl.length + '</span></h5>' 
-                        + '<div class="collapse ms-5 aliasstijl" id="icollapse' + itemnr + '">' + (q.aliases.nl.map(getNL)).sort().join('') + '</div>'
+                        + '<div class="collapse ms-5 aliasstijl" id="icollapse' + itemnr + '">' + (q.aliases.nl.map(getNL)).sort().join('<br/>') + '</div>'
                     : '<div id="icollapse' + itemnr + '"></div>');
             //console.log(li);
             itemnr++;
