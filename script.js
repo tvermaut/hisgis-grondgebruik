@@ -14,7 +14,7 @@ $(function() {
     var ul1_id = itemnr;
     itemnr++;
     for(let i of j.claims.P33){
-        let lii = await checkWBi(i.mainsnak.datavalue.value.id);
+        let lii = await checkWBi(i.mainsnak.datavalue.value.id, '#ul'+ul1_id);
         if(lii){$('#ul'+ul1_id).append(lii);}
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.hasOwnProperty("P36")){
             var ul2 = document.createElement("ul");
@@ -23,8 +23,7 @@ $(function() {
             itemnr++;
             $('#ul'+ul1_id).append(ul2);
             for(let q of i.qualifiers.P36){ // P36 = tariefsoort
-                let ul2li = await checkWBi(q.datavalue.value.id);
-                if(ul2li){$('#ul'+ul2_id).append(ul2li);}
+                let ul2li = await checkWBi(q.datavalue.value.id, '#ul'+ul2_id);
                 }
                 
             }
@@ -32,7 +31,7 @@ $(function() {
     // P33
 }
 
-async function checkWBi(wbid){
+async function checkWBi(wbid, ouder){
     await fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=' + wbid + '&format=json')
         .then((response) => response.json())
         .then((data) => {
@@ -44,7 +43,7 @@ async function checkWBi(wbid){
             itemnr++;
             li.innerHTML = q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': ' + (q.aliases.nl.map(getNL)).join(', ') : '');
             //console.log(li);
-            return li
+            if(li.innerHTML){$(ouder).append(li);}
         });
 }
 
