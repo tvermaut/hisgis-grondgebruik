@@ -3,4 +3,6 @@
     border: 1px solid #999999;
     border-radius:0.7rem;
     background-color:#eeeeee;
+    -webkit-user-select: all; /* Covers Blink-land & Firefox (yup) */
+    user-select: all; /* Someday */
 }
