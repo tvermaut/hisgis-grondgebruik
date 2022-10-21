@@ -44,7 +44,7 @@ async function checkWBi(wbid){
             li.setAttribute("id",itemnr);
             itemnr++;
             li.innerHTML = q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': ' + (q.aliases.nl.map(getNL)).join(', ') : '');
-            console.log(li);
+            //console.log(li);
             return li
         });
 }
