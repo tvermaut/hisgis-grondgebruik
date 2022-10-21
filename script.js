@@ -3,8 +3,8 @@ var itemnr = 0;
 $(function() {
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
-        .then(data => verwerkWB(data.entities.Q101));
-    $('.collapse').collapse();
+        .then(data => verwerkWB(data.entities.Q101))
+        .then(data => {$('.collapse').collapse();});
   });
 
   async function verwerkWB(j){
