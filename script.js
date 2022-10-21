@@ -1,9 +1,9 @@
 var itemnr = 0;
 
-$(async function() {
+$(function() {
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
-        .then(data => {await $("#lijst").append(verwerkWB(data.entities.Q101))})
+        .then(data => verwerkWB(data.entities.Q101))
   });
 
   async function verwerkWB(j){
@@ -29,7 +29,6 @@ $(async function() {
                 
             }
         }
-        return ul1
     // P33
 }
 
