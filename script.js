@@ -44,7 +44,7 @@ async function checkWBi(wbid, ouder, ms){
             li.setAttribute("id",'li'+itemnr);
             li.setAttribute("class", "list-group-item col " + ms);
             itemnr++;
-            li.innerHTML = '<div class="d-flex justify-content-between align-items-center">' + q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': <span class="badge badge-primary badge-pill">' + q.aliases.nl.length + '</span></div>' + (q.aliases.nl.map(getNL)).join(', ') : '</div>');
+            li.innerHTML = '<h5 class="d-flex justify-content-between align-items-center">' + q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': <span class="badge badge-primary badge-pill">' + q.aliases.nl.length + '</span></h5>' + (q.aliases.nl.map(getNL)).join(', ') : '</div>');
             //console.log(li);
             if(li.innerHTML){$(ouder).append(li);}
         });
