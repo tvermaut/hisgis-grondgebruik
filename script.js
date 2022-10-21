@@ -19,7 +19,7 @@ $(function() {
             ul1.appendChild(ul2);
             }
         }
-    $("#lijst").html(ul1);
+    $("#lijst").innerHTML = ul1;
     // P33
 }
 
