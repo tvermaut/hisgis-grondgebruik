@@ -1,7 +1,7 @@
 $(function() {
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
-        .then(data => verwerkWB(data.entities.Q101));
+        .then(data => {$("#lijst").html(verwerkWB(data.entities.Q101))})
   });
 
   async function verwerkWB(j){
@@ -19,7 +19,7 @@ $(function() {
             ul1.appendChild(ul2);
             }
         }
-    $("#lijst").innerHTML = ul1;
+        return ul1
     // P33
 }
 
