@@ -9,7 +9,7 @@ $(function() {
   async function verwerkWB(j){
     // P33 = ongebouwd
     var ul1 = document.createElement("ul");
-    ul1.attr("id",itemnr);
+    ul1.setAttribute("id",itemnr);
     $('#lijst').appendChild(ul1);
     var ul1_id = itemnr;
     itemnr++;
@@ -18,7 +18,7 @@ $(function() {
         if(lii){$('#'+ul1_id).appendChild(lii);}
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.hasOwnProperty("P36")){
             var ul2 = document.createElement("ul");
-            ul2.attr("id",itemnr);
+            ul2.setAttribute("id",itemnr);
             var ul2_id = itemnr;
             itemnr++;
             $('#'+ul1_id).appendChild(ul2);
@@ -41,7 +41,7 @@ async function checkWBi(wbid){
             let q = data.entities[Object.getOwnPropertyNames(data.entities)[0]];
             //console.log(q);
             let li = document.createElement("li");
-            li.attr("id",itemnr);
+            li.setAttribute("id",itemnr);
             itemnr++;
             li.innerHTML = q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': ' + (q.aliases.nl.map(getNL)).join(', ') : '');
             console.log(li);
