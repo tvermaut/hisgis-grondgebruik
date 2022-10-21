@@ -45,7 +45,7 @@ async function checkWBi(wbid, ouder, ms){
             li.setAttribute("id",'li'+itemnr);
             li.setAttribute("class", "list-group-item col " + ms);
             
-            li.innerHTML = '<button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#icollapse' + itemnr + '" aria-expanded="false" aria-controls="icollapse' + itemnr + '">' + q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': <span class="badge badge-primary badge-pill">' + q.aliases.nl.length + '</span></button><div class="collapse" id="icollapse' + itemnr + '">' + (q.aliases.nl.map(getNL)).join('') : '</div></div>');
+            li.innerHTML = '<h5 class="" data-toggle="collapse" data-target="#icollapse' + itemnr + '" aria-expanded="false" aria-controls="icollapse' + itemnr + '">' + q.labels.nl.value + (q.hasOwnProperty("aliases") && q.aliases.hasOwnProperty("nl") ? ': <span class="badge badge-primary badge-pill">' + q.aliases.nl.length + '</span></h5><div class="collapse" id="icollapse' + itemnr + '">' + (q.aliases.nl.map(getNL)).join('') : '</div></div>');
             //console.log(li);
             itemnr++;
             if(li.innerHTML){$(ouder).append(li);}
@@ -53,7 +53,7 @@ async function checkWBi(wbid, ouder, ms){
 }
 
 function getNL(item){
-    return '<span class="alias px-1 me-2">' + item.value + '</span>';
+    return '<span class="alias px-1 me-2 my-1">' + item.value + '</span>';
 }
     
 // P29 = OSM-tag
