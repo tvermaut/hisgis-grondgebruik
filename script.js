@@ -15,7 +15,7 @@ $(function() {
     itemnr++;
     for(let i of j.claims.P33){
         let lii = await checkWBi(i.mainsnak.datavalue.value.id);
-        if(lii){$('#'+ul1_id).append(lii);}
+        if(lii){$('#ul'+ul1_id).append(lii);}
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.hasOwnProperty("P36")){
             var ul2 = document.createElement("ul");
             ul2.setAttribute("id",'ul' + itemnr);
@@ -24,7 +24,7 @@ $(function() {
             $('#ul'+ul1_id).append(ul2);
             for(let q of i.qualifiers.P36){ // P36 = tariefsoort
                 let ul2li = await checkWBi(q.datavalue.value.id);
-                if(ul2li){$('#'+ul2_id).append(ul2li);}
+                if(ul2li){$('#ul'+ul2_id).append(ul2li);}
                 }
                 
             }
