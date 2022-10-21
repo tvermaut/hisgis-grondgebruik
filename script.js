@@ -8,7 +8,8 @@ $(function() {
     // P33 = ongebouwd
     var ul1 = document.createElement("ul");
     for(let i of j.claims.P33){
-        ul1.appendChild(await checkWBi(i.mainsnak.datavalue.value.id));
+        let lii = await checkWBi(i.mainsnak.datavalue.value.id);
+        if(lii){ul1.appendChild(lii);}
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.hasOwnProperty("P36")){
             var ul2 = document.createElement("ul");
             for(let q of i.qualifiers.P36){ // P36 = tariefsoort
