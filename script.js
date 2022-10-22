@@ -13,7 +13,7 @@ $(function() {
         .then(data => verwerkWB(data.entities.Q101))
         .then(data => {
             $('.collapse').collapse();
-            $('#opmerking').innerHTML += '<br/><span id="opmts">Tariefsoorten inladen (<span id="nrg">0</span> Gemeenten, <span id="nrts">0</span> Tariefsoorten en <span id="nrgg">0</span> grondgebruik = <span id"nrtot">0<span> totaal)</span>';
+            $('#opmerking').html($('#opmerking').html() + '<br/><span id="opmts">Tariefsoorten inladen (<span id="nrg">0</span> Gemeenten, <span id="nrts">0</span> Tariefsoorten en <span id="nrgg">0</span> grondgebruik = <span id"nrtot">0<span> totaal)</span>');
             fetch('https://oat.hisgis.nl/oat-ws/rest/tarieven')
                 .then(response => response.json())
                 .then(data => verwerkTarief(data.results))
@@ -85,7 +85,7 @@ async function verwerkTarief(){
         .then(data => {
             for(let gemeente of data.results){
                 nrg += 1;
-                $('#nrg').innerHTML = nrg;
+                $('#nrg').html(nrg);
                 let gi = new Gemeente(gemeente);
                 console.log(gi.uniekeNaam);
                 }
@@ -104,7 +104,7 @@ class Gemeente {
         this.tariefsoorten = [];
         for(let ts of json.tariefsoorten){
             nrts += 1;
-            $('#nrts').innerHTML = nrts;
+            $('#nrts').html(nrts);
             this.tariefsoorten[ts.naam] = new Tariefsoort(ts);
         }
     }
@@ -133,9 +133,9 @@ class Tariefsoort {
         for(let t of j.tarieven){
             for(let og in t.oatGebruik){
                 nrgg += 1;
-                $('#nrgg').innerHTML = nrgg;
+                $('#nrgg').html(nrgg);
                 nrtot += t.oatGebruik[og];
-                $('#nrtot').innerHTML = nrtot;
+                $('#nrtot').html(nrtot);
                 if(!(og in gg)){gg[og] = 0}
                 gg[og] += t.oatGebruik[og];
                 this.gg = t.oatGebruik[og];
