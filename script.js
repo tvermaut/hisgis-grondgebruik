@@ -118,7 +118,7 @@ class Tariefsoort {
         this.recht = false;
         if(j.opmerking && j.opmerking == "recht"){this.recht = true}
         this.opp = false;
-        if(j.hasOwnProperty("categorie") & j.categorie.categorie == "Opperclakte der Gebouwen") {this.opp = true;}
+        if(j.hasOwnProperty("categorie") && j.categorie.categorie == "Opperclakte der Gebouwen") {this.opp = true;}
         for(let t in j.tarieven){
             for(let og in t.oatGebruik){
                 if(!(og in gg)){gg[og] = 0}
