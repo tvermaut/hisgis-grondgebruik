@@ -77,7 +77,7 @@ async function verwerkTarief(){
     let gemeenten = await fetch('https://oat.hisgis.nl/oat-ws/rest/tarieven')
         .then(response => response.json())
         .then(data => {
-            for(let gemeente in data.results){
+            for(let gemeente of data.results){
                 let gi = new Gemeente(gemeente);
                 console.log(gi.uniekeNaam);
                 }
@@ -94,7 +94,7 @@ class Gemeente {
         this.uniekeNaam = json.uniekeNaan || '';
         this.status = json.status;
         this.tariefsoorten = [];
-        for(let ts in json){
+        for(let ts of json){
             this.tariefsoorten[ts.naam] = new Tariefsoort(ts);
         }
     }
@@ -120,7 +120,7 @@ class Tariefsoort {
         if(j.opmerking && j.opmerking == "recht"){this.recht = true}
         this.opp = false;
         if(j.hasOwnProperty("categorie") && j.categorie.categorie == "Opperclakte der Gebouwen") {this.opp = true;}
-        for(let t in j.tarieven){
+        for(let t of j.tarieven){
             for(let og in t.oatGebruik){
                 if(!(og in gg)){gg[og] = 0}
                 gg[og] += t.oatGebruik[og];
