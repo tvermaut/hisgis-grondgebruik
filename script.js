@@ -1,13 +1,19 @@
 var itemnr = 0;
 var gg = [];
 var ts = [];
+var nrg = 0;
+var nrts = 0;
+var nrgg = 0;
+var nrtot = 0;
 
 $(function() {
+    $('#opmerking').innerHTML = '<span id="opmgg">grondgebruik inladen (<span id="nrgg">0</span> soorten)</span>';
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
         .then(data => verwerkWB(data.entities.Q101))
         .then(data => {
             $('.collapse').collapse();
+            $('#opmerking').innerHTML += '<br/><span id="opmts">Tariefsoorten inladen (<span id="nrg">0</span> Gemeenten, <span id="nrts">0</span> Tariefsoorten en <span id="nrgg">0</span> grondgebruik = <span id"nrtot">0<span> totaal)</span>';
             fetch('https://oat.hisgis.nl/oat-ws/rest/tarieven')
                 .then(response => response.json())
                 .then(data => verwerkTarief(data.results))
@@ -78,6 +84,8 @@ async function verwerkTarief(){
         .then(response => response.json())
         .then(data => {
             for(let gemeente of data.results){
+                nrg += 1;
+                $('#nrg') = nrg;
                 let gi = new Gemeente(gemeente);
                 console.log(gi.uniekeNaam);
                 }
@@ -95,6 +103,8 @@ class Gemeente {
         this.status = json.status;
         this.tariefsoorten = [];
         for(let ts of json.tariefsoorten){
+            nrts += 1;
+            $('#nrts') = nrts;
             this.tariefsoorten[ts.naam] = new Tariefsoort(ts);
         }
     }
@@ -122,6 +132,10 @@ class Tariefsoort {
         if(j.hasOwnProperty("categorie") && j.categorie.categorie == "Opperclakte der Gebouwen") {this.opp = true;}
         for(let t of j.tarieven){
             for(let og in t.oatGebruik){
+                nrgg += 1;
+                $('#nrgg') = nrgg;
+                nrtot += t.oatGebruik[og];
+                $('#nrtot') = nrtot;
                 if(!(og in gg)){gg[og] = 0}
                 gg[og] += t.oatGebruik[og];
                 this.gg = t.oatGebruik[og];
