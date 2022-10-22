@@ -73,11 +73,15 @@ function getNL(item){
 // P36 = tariefsoort
 // P43 = kleur
 
-async function verwerkTarief(gemeenten){
-    for(let gemeente in gemeenten){
-        let gi = new Gemeente(gemeente);
-        console.log(gi.naam);
-    }
+async function verwerkTarief(){
+    let gemeenten = await fetch('https://oat.hisgis.nl/oat-ws/rest/tarieven')
+        .then(response => response.json())
+        .then(data => {
+            for(let gemeente in data.results){
+                let gi = new Gemeente(gemeente);
+                console.log(gi.naam);
+                }
+    });
 }
 
 class Gemeente {
