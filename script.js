@@ -94,7 +94,7 @@ class Gemeente {
         this.uniekeNaam = json.uniekeNaan || '';
         this.status = json.status;
         this.tariefsoorten = [];
-        for(let ts of json){
+        for(let ts of json.tariefsoorten){
             this.tariefsoorten[ts.naam] = new Tariefsoort(ts);
         }
     }
