@@ -5,12 +5,16 @@ var nrg = 0;
 var nrts = 0;
 var nrgg = 0;
 var nrtot = 0;
+var nrdata = 0;
 
 $(function() {
     $('#opmerking').innerHTML = '<span id="opmgg">grondgebruik inladen (<span id="nrgg">0</span> soorten)</span>';
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
-        .then(data => verwerkWB(data.entities.Q101))
+        .then(data => {
+            $('#opmerking').html('Grondgebruik inladen... (<span id="nrdata">0<span> soorten)');
+            verwerkWB(data.entities.Q101);
+            })
         .then(data => {
             $('.collapse').collapse();
             $('#opmerking').html($('#opmerking').html() + '<br/><span id="opmts">Tariefsoorten inladen (<span id="nrg">0</span> Gemeenten, <span id="nrts">0</span> Tariefsoorten en <span id="nrgg">0</span> grondgebruik = <span id"nrtot">0<span> totaal)</span>');
@@ -30,6 +34,8 @@ $(function() {
     var ul1_id = itemnr;
     itemnr++;
     for(let i of j.claims.P33){
+        nrdata += 1;
+        $('#nrdata').html(nrdata);
         let lii = await checkWBi(i.mainsnak.datavalue.value.id, '#ul'+ul1_id, 'ms-1');
         if(lii){$('#ul'+ul1_id).append(lii);}
         if(i.hasOwnProperty("qualifiers") && i.qualifiers.hasOwnProperty("P36")){
