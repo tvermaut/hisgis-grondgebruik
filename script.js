@@ -79,7 +79,7 @@ async function verwerkTarief(){
         .then(data => {
             for(let gemeente in data.results){
                 let gi = new Gemeente(gemeente);
-                console.log(gi.naam);
+                console.log(gi.uniekeNaam);
                 }
     });
 }
