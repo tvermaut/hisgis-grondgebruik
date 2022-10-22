@@ -1,10 +1,18 @@
 var itemnr = 0;
+var gg = [];
+var ts = [];
 
 $(function() {
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
         .then(data => verwerkWB(data.entities.Q101))
-        .then(data => {$('.collapse').collapse();});
+        .then(data => {
+            $('.collapse').collapse();
+            fetch('https://oat.hisgis.nl/oat-ws/rest/tarieven')
+                .then(response => response.json())
+                .then(data => verwerkTarief(data.results))
+                .then(data => console.log(gg))
+            });
   });
 
   async function verwerkWB(j){
@@ -64,3 +72,56 @@ function getNL(item){
 // P30 = tariefsoortnaam
 // P36 = tariefsoort
 // P43 = kleur
+
+async function verwerkTarief(gemeenten){
+    for(let gemeente in gemeente){
+        let gi = new Gemeente(gemeente);
+        console.log(gi.naam);
+    }
+}
+
+class Gemeente {
+    uniekeNaam;
+    status;
+    tariefsoorten;
+
+    constructor(json){
+        this.uniekeNaam = json.uniekeNaan || '';
+        this.status = json.status;
+        this.tariefsoorten = [];
+        for(let ts in json){
+            this.tariefsoorten[ts.naam] = new Tariefsoort(ts);
+        }
+    }
+}
+
+class Tariefsoort {
+    gebouwd;
+    naam;
+    polder;
+    recht;
+    onbelast;
+    opp;
+    gg;
+
+    constructor(j){
+        this.gebouwd = j.gebouwd;
+        this.naam = j.naam;
+        this.polder = false;
+        if(j.opmerking && j.opmerking == "polder"){this.polder = true}
+        this.onbelast = false;
+        if(j.opmerking && j.opmerking == "onbelast"){this.onbelast = true}
+        this.recht = false;
+        if(j.opmerking && j.opmerking == "recht"){this.recht = true}
+        this.opp = false;
+        if(j.hasOwnProperty("categorie") & j.categorie.categorie == "Opperclakte der Gebouwen") {this.opp = true;}
+        for(let t in j.tarieven){
+            for(let og in t.oatGebruik){
+                if(!(og in gg)){gg[og] = 0}
+                gg[og] += t.oatGebruik[og];
+                this.gg = t.oatGebruik[og];
+            }
+        }
+        if(!(this.naam in ts)){ts[this.naam] = this;}
+    }
+}
