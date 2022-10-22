@@ -85,7 +85,7 @@ async function verwerkTarief(){
         .then(data => {
             for(let gemeente of data.results){
                 nrg += 1;
-                $('#nrg') = nrg;
+                $('#nrg').innerHTML = nrg;
                 let gi = new Gemeente(gemeente);
                 console.log(gi.uniekeNaam);
                 }
@@ -104,7 +104,7 @@ class Gemeente {
         this.tariefsoorten = [];
         for(let ts of json.tariefsoorten){
             nrts += 1;
-            $('#nrts') = nrts;
+            $('#nrts').innerHTML = nrts;
             this.tariefsoorten[ts.naam] = new Tariefsoort(ts);
         }
     }
@@ -133,9 +133,9 @@ class Tariefsoort {
         for(let t of j.tarieven){
             for(let og in t.oatGebruik){
                 nrgg += 1;
-                $('#nrgg') = nrgg;
+                $('#nrgg').innerHTML = nrgg;
                 nrtot += t.oatGebruik[og];
-                $('#nrtot') = nrtot;
+                $('#nrtot').innerHTML = nrtot;
                 if(!(og in gg)){gg[og] = 0}
                 gg[og] += t.oatGebruik[og];
                 this.gg = t.oatGebruik[og];
