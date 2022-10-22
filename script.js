@@ -90,6 +90,7 @@ class Gemeente {
     tariefsoorten;
 
     constructor(json){
+        console.log(json);
         this.uniekeNaam = json.uniekeNaan || '';
         this.status = json.status;
         this.tariefsoorten = [];
