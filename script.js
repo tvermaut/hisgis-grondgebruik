@@ -8,16 +8,15 @@ var nrtot = 0;
 var nrdata = 0;
 
 $(function() {
-    $('#opmerking').innerHTML = '<span id="opmgg">grondgebruik inladen (<span id="nrgg">0</span> soorten)</span>';
     fetch('https://data.hisgis.nl/w/api.php?action=wbgetentities&ids=Q101&format=json')
         .then(response => response.json())
         .then(data => {
-            $('#opmerking').html('Grondgebruik inladen... (<span id="nrdata">0<span> soorten)');
+            $('#opmerking').html('Grondgebruik inladen... (<span id="nrdata">0</span> soorten)');
             verwerkWB(data.entities.Q101);
             })
         .then(data => {
             $('.collapse').collapse();
-            $('#opmerking').html($('#opmerking').html() + '<br/><span id="opmts">Tariefsoorten inladen (<span id="nrg">0</span> Gemeenten, <span id="nrts">0</span> Tariefsoorten en <span id="nrgg">0</span> grondgebruik = <span id"nrtot">0<span> totaal)</span>');
+            $('#opmerking').html($('#opmerking').html() + '<br/><span id="opmts">Tariefsoorten inladen (<span id="nrg">0</span> Gemeenten, <span id="nrts">0</span> Tariefsoorten en <span id="nrgg">0</span> grondgebruik = <span id="nrtot">0<span> totaal)</span>');
             fetch('https://oat.hisgis.nl/oat-ws/rest/tarieven')
                 .then(response => response.json())
                 .then(data => verwerkTarief(data.results))
