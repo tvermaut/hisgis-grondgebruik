@@ -74,7 +74,7 @@ function getNL(item){
 // P43 = kleur
 
 async function verwerkTarief(gemeenten){
-    for(let gemeente in gemeente){
+    for(let gemeente in gemeenten){
         let gi = new Gemeente(gemeente);
         console.log(gi.naam);
     }
